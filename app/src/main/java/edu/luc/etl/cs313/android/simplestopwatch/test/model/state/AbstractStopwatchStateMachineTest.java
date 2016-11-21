@@ -12,6 +12,7 @@ import edu.luc.etl.cs313.android.simplestopwatch.R;
 import edu.luc.etl.cs313.android.simplestopwatch.common.StopwatchUIUpdateListener;
 import edu.luc.etl.cs313.android.simplestopwatch.model.clock.ClockModel;
 import edu.luc.etl.cs313.android.simplestopwatch.model.clock.OnTickListener;
+import edu.luc.etl.cs313.android.simplestopwatch.model.counter.CounterModel;
 import edu.luc.etl.cs313.android.simplestopwatch.model.state.StopwatchStateMachine;
 import edu.luc.etl.cs313.android.simplestopwatch.model.time.TimeModel;
 
@@ -141,7 +142,7 @@ public abstract class AbstractStopwatchStateMachineTest {
  *
  * @author laufer
  */
-class UnifiedMockDependency implements TimeModel, ClockModel, StopwatchUIUpdateListener {
+class UnifiedMockDependency implements TimeModel, ClockModel, CounterModel, StopwatchUIUpdateListener {
 
     private int timeValue = -1, stateId = -1;
 
@@ -172,6 +173,11 @@ class UnifiedMockDependency implements TimeModel, ClockModel, StopwatchUIUpdateL
     }
 
     @Override
+    public void updateCounter(int counterValue) {
+
+    }
+
+    @Override
     public void setOnTickListener(OnTickListener listener) {
         throw new UnsupportedOperationException();
     }
@@ -184,6 +190,16 @@ class UnifiedMockDependency implements TimeModel, ClockModel, StopwatchUIUpdateL
     @Override
     public void stop() {
         started = false;
+    }
+
+    @Override
+    public void negativeCountingStart() {
+
+    }
+
+    @Override
+    public void negativeCountingStop() {
+
     }
 
     @Override
@@ -209,5 +225,35 @@ class UnifiedMockDependency implements TimeModel, ClockModel, StopwatchUIUpdateL
     @Override
     public int getLaptime() {
         return lapTime;
+    }
+
+    @Override
+    public void increment() {
+
+    }
+
+    @Override
+    public void decrement() {
+
+    }
+
+    @Override
+    public void reset() {
+
+    }
+
+    @Override
+    public int get() {
+        return 0;
+    }
+
+    @Override
+    public boolean isFull() {
+        return false;
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return false;
     }
 }

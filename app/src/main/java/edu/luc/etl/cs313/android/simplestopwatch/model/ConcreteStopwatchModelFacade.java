@@ -3,6 +3,8 @@ package edu.luc.etl.cs313.android.simplestopwatch.model;
 import edu.luc.etl.cs313.android.simplestopwatch.common.StopwatchUIUpdateListener;
 import edu.luc.etl.cs313.android.simplestopwatch.model.clock.ClockModel;
 import edu.luc.etl.cs313.android.simplestopwatch.model.clock.DefaultClockModel;
+import edu.luc.etl.cs313.android.simplestopwatch.model.counter.CounterModel;
+import edu.luc.etl.cs313.android.simplestopwatch.model.counter.DefaultCounterModel;
 import edu.luc.etl.cs313.android.simplestopwatch.model.state.DefaultStopwatchStateMachine;
 import edu.luc.etl.cs313.android.simplestopwatch.model.state.StopwatchStateMachine;
 import edu.luc.etl.cs313.android.simplestopwatch.model.time.DefaultTimeModel;
@@ -21,10 +23,13 @@ public class ConcreteStopwatchModelFacade implements StopwatchModelFacade {
 
     private TimeModel timeModel;
 
+    private CounterModel counterModel;
+
     public ConcreteStopwatchModelFacade() {
         timeModel = new DefaultTimeModel();
         clockModel = new DefaultClockModel();
-        stateMachine = new DefaultStopwatchStateMachine(timeModel, clockModel);
+        counterModel = new DefaultCounterModel();
+        stateMachine = new DefaultStopwatchStateMachine(timeModel, clockModel, counterModel);
         clockModel.setOnTickListener(stateMachine);
     }
 
@@ -46,6 +51,11 @@ public class ConcreteStopwatchModelFacade implements StopwatchModelFacade {
     @Override
     public void onLapReset() {
         stateMachine.onLapReset();
+    }
+
+    @Override
+    public void onIncrementStop() {
+        stateMachine.onIncrementStop();
     }
 
 }

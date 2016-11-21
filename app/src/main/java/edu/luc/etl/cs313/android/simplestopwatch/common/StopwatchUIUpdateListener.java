@@ -10,4 +10,6 @@ package edu.luc.etl.cs313.android.simplestopwatch.common;
 public interface StopwatchUIUpdateListener {
     void updateTime(int timeValue);
     void updateState(int stateId);
+
+    void updateCounter(int counterValue);
 }

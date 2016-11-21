@@ -23,6 +23,11 @@ class LapRunningState implements StopwatchState {
     }
 
     @Override
+    public void onIncrementStop() {
+
+    }
+
+    @Override
     public void onTick() {
         sm.actionInc();
         sm.toLapRunningState();

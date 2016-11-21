@@ -13,6 +13,7 @@ public class DefaultClockModel implements ClockModel {
     // TODO make accurate by keeping track of partial seconds when canceled etc.
 
     private Timer timer;
+    private Timer negativeTimer;
 
     private OnTickListener listener;
 
@@ -37,5 +38,25 @@ public class DefaultClockModel implements ClockModel {
     @Override
     public void stop() {
         timer.cancel();
+    }
+
+    @Override
+    public void negativeCountingStart() {
+        negativeTimer = new Timer();
+
+        // The clock model runs onTick every 1000 milliseconds
+        negativeTimer.schedule(new TimerTask() {
+            @Override public void run() {
+                // fire event
+                listener.onTick();
+            }
+        }, /*initial delay*/ 3000, /*periodic delay*/ 3000);
+    }
+
+    @Override
+    public void negativeCountingStop() {
+        if (negativeTimer != null) {
+            negativeTimer.cancel();
+        }
     }
 }

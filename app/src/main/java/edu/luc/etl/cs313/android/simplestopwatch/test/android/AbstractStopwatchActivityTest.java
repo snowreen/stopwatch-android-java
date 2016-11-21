@@ -108,9 +108,10 @@ public abstract class AbstractStopwatchActivityTest {
     }
 
     protected int getDisplayedValue() {
-        final TextView ts = (TextView) getActivity().findViewById(R.id.seconds);
+        /*final TextView ts = (TextView) getActivity().findViewById(R.id.seconds);
         final TextView tm = (TextView) getActivity().findViewById(R.id.minutes);
-        return SEC_PER_MIN * tvToInt(tm) + tvToInt(ts);
+        return SEC_PER_MIN * tvToInt(tm) + tvToInt(ts);*/
+        return 0;
     }
 
     protected Button getStartStopButton() {
@@ -118,7 +119,8 @@ public abstract class AbstractStopwatchActivityTest {
     }
 
     protected Button getResetLapButton() {
-        return (Button) getActivity().findViewById(R.id.resetLap);
+        //return (Button) getActivity().findViewById(R.id.resetLap);
+        return null;
     }
 
     /**

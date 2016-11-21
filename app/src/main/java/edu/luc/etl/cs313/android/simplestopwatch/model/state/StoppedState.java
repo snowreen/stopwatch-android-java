@@ -23,13 +23,21 @@ class StoppedState implements StopwatchState {
     }
 
     @Override
+    public void onIncrementStop() {
+        sm.actionIncrement();
+        sm.actionNegativeCounterStart();
+        sm.toIncrementState();
+    }
+
+    @Override
     public void onTick() {
         throw new UnsupportedOperationException("onTick");
     }
 
     @Override
     public void updateView() {
-        sm.updateUIRuntime();
+        //sm.updateUIRuntime();
+        sm.updateUICounter();
     }
 
     @Override

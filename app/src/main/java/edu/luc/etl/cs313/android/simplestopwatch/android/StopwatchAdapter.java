@@ -60,14 +60,14 @@ public class StopwatchAdapter extends Activity implements StopwatchUIUpdateListe
      */
     public void updateTime(final int time) {
         // UI adapter responsibility to schedule incoming events on UI thread
-        runOnUiThread(() -> {
+        /*runOnUiThread(() -> {
             final TextView tvS = (TextView) findViewById(R.id.seconds);
             final TextView tvM = (TextView) findViewById(R.id.minutes);
             final int seconds = time % Constants.SEC_PER_MIN;
             final int minutes = time / Constants.SEC_PER_MIN;
             tvS.setText(Integer.toString(seconds / 10) + Integer.toString(seconds % 10));
             tvM.setText(Integer.toString(minutes / 10) + Integer.toString(minutes % 10));
-        });
+        });*/
     }
 
     /**
@@ -82,12 +82,21 @@ public class StopwatchAdapter extends Activity implements StopwatchUIUpdateListe
         });
     }
 
-    // forward event listener methods to the model
-    public void onStartStop(final View view) {
-        model.onStartStop();
+    @Override
+    public void updateCounter(final int counterValue) {
+        runOnUiThread(() -> {
+            final TextView tvS = (TextView) findViewById(R.id.seconds);
+            tvS.setText(Integer.toString(counterValue / 10) + Integer.toString(counterValue % 10));
+        });
     }
 
-    public void onLapReset(final View view)  {
-        model.onLapReset();
+    // forward event listener methods to the model
+    public void onStartStop(final View view) {
+        //model.onStartStop();
+        model.onIncrementStop();
     }
+
+    /*public void onLapReset(final View view)  {
+        model.onLapReset();
+    }*/
 }

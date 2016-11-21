@@ -23,6 +23,11 @@ class LapStoppedState implements StopwatchState {
     }
 
     @Override
+    public void onIncrementStop() {
+
+    }
+
+    @Override
     public void onTick() {
         throw new UnsupportedOperationException("onTick");
     }

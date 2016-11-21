@@ -17,7 +17,7 @@ public class DefaultStopwatchStateMachineTest extends AbstractStopwatchStateMach
     @Before
     public void setUp() throws Exception {
         super.setUp();
-        setModel(new DefaultStopwatchStateMachine(getDependency(), getDependency()));
+        setModel(new DefaultStopwatchStateMachine(getDependency(), getDependency(), getDependency()));
     }
 
     @After
